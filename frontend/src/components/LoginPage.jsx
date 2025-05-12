@@ -11,8 +11,8 @@ function LoginPage() {
 
   const { login } = useAuth();
 
-  function handleLogin(role) {
-    login(role);
+  function handleLogin(data) {
+    login(data);
   }
 
   const navigator = useNavigate();
@@ -20,6 +20,7 @@ function LoginPage() {
     name: "",
     mail: "",
     pwd: "",
+    role: "",
     occupation: "",
     currentCompany: "",
     areasOfInterest: "",
@@ -32,13 +33,14 @@ function LoginPage() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
+      role: user,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(user);
+    handleLogin(formData);
     navigator("/home");
   };
 
